@@ -1,5 +1,5 @@
-from model import *
-from data import *
+from unet_1channel.model import *
+from unet_1channel.data import *
 
 #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -11,12 +11,12 @@ data_gen_args = dict(rotation_range=0.2,
                     zoom_range=0.05,
                     horizontal_flip=True,
                     fill_mode='nearest')
-myGene = trainGenerator(2,'data/membrane/train','image','label',data_gen_args,save_to_dir = None)
+myGene = trainGenerator(2,'data1d/train','frames','masks',data_gen_args,save_to_dir = None)
 
 model = unet()
-model_checkpoint = ModelCheckpoint('unet_membrane.hdf5', monitor='loss',verbose=1, save_best_only=True)
+model_checkpoint = ModelCheckpoint('unet1d.hdf5', monitor='loss',verbose=1, save_best_only=True)
 model.fit_generator(myGene,steps_per_epoch=300,epochs=1,callbacks=[model_checkpoint])
 
-testGene = testGenerator("data/membrane/test")
+testGene = testGenerator("data1d/test")
 results = model.predict_generator(testGene,30,verbose=1)
-saveResult("data/membrane/test",results)
+saveResult("data1d/test",results)
