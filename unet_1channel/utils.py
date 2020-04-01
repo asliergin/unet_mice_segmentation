@@ -15,6 +15,7 @@ def plot_segm_history(history):
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
+    plt.xticks([1,2,3,4,5])
 #    plt.legend(['train', 'test'], loc='upper left')
     plt.show()
     # summarize history for loss
