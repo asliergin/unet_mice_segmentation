@@ -1,0 +1,24 @@
+\documentclass[a4paper]{article}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\newcommand{\addblock}[1]{\begin{figure}
+  \centering
+  \makebox[\textwidth]{\includegraphics[width=16cm]{block_#1.pdf}}
+  \caption{Layer #1}
+\end{figure}}
+
+\begin{document}
+
+\addblock{1}
+\addblock{2}
+\addblock{3}
+\addblock{4}
+\addblock{5}
+\addblock{6}
+\addblock{7}
+\addblock{8}
+\addblock{9}
+
+\end{document}
